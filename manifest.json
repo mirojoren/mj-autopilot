@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "MJ Autopilot — Midjourney 批量助手",
+  "version": "0.9.3",
+  "description": "Midjourney 网页版批量队列、MJ 8.2提示词工作台(主体描述+10维预设含随机、一键全随机、一次生成1-10条结果可勾选/删除/批量入列、一键公式点击直接出结果)、Cloudflare人机验证自动处理、批量静默下载+自动重命名+自动保存提示词txt、下载目录手选、反选/全不选、单条发送间隔(秒)可调、预计完成时间、每批并发+批间出图确认、单任务点击填入输入框、任务勾选标记、免费AI翻译、随机seed/间隔/顺序防封号、发送节奏面板、下载格式转换",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "MJ Autopilot",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["parser.js", "content.js"],
+      "css": ["content.css"],
+      "matches": [
+        "https://www.midjourney.com/*",
+        "https://midjourney.com/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "downloads",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.midjourney.com/*",
+    "https://midjourney.com/*",
+    "https://cdn.midjourney.com/*",
+    "https://index-translate.bilibili.com/*"
+  ]
+}
